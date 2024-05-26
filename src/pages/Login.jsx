@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { LoginForm } from "../modules";
 
 const Login = () => {
-  return <div>123</div>;
+  useEffect(() => {}, []);
+
+  return (
+    <>
+      <LoginForm />
+    </>
+  );
 };
 
 export default Login;

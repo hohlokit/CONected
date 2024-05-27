@@ -14,6 +14,8 @@ module.exports = {
           component: {
             card: "#181A21",
             header: "#171d25",
+            input: "#32353c",
+            inputHover: "#393c44",
           },
         },
       },

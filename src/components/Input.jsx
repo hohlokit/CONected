@@ -5,7 +5,6 @@ import Error from "./Error";
 
 const Input = forwardRef(
   ({ name, defaultValue, type, className, label, error, ...props }, ref) => {
-    console.log(props);
     return (
       <div className="flex flex-col">
         <label
@@ -17,7 +16,7 @@ const Input = forwardRef(
             name={name}
             ref={ref}
             className={cn(
-              "font-normal text-base text-black rounded p-2.5 w-48 border lg:w-96",
+              "bg-steam-component-input border-steam-component-input font-normal text-base text-white rounded p-2.5 w-48  outline-none lg:w-96 hover:bg-steam-component-inputHover",
               className
             )}
             type={type}

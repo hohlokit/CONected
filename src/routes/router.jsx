@@ -1,11 +1,19 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Login } from "../pages";
+import { Login, ResetPassword, Registration } from "../pages";
 
 const routes = [
   {
+    element: <Registration />,
+    path: "registration",
+  },
+  {
     element: <Login />,
     path: "login",
+  },
+  {
+    element: <ResetPassword />,
+    path: "reset-password",
   },
 ];
 

@@ -1,19 +1,9 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { T_ERRORS } from 'src/constants/translate/prefixes';
-import { TYPE_STRING } from 'src/constants/types';
+import React from "react";
 
-const Error = ({ children, showError }) => {
-  const { t } = useTranslation();
-
-  if (!showError) return null;
-
-  const errorText =
-    typeof children === TYPE_STRING
-      ? t(`${T_ERRORS} - ${children}`)
-      : t(`${T_ERRORS} - ${children.i18nKey}`, children.i18nParams);
-
-  return <div className="pt-2 pl-2 text-left text-red-primary">{errorText}</div>;
+const Error = ({ children }) => {
+  return (
+    <div className="h-4 pt-1 pl-2 text-left text-red-400">{children}</div>
+  );
 };
 
 export default Error;

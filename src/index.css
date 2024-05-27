@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-gray-600 flex min-h-screen;
+    @apply flex min-h-screen w-screen bg-body bg-no-repeat bg-cover;
   }
 }

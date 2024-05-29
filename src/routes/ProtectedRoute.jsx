@@ -1,9 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = ({ isAllowed, redirectPath = "/", children }) => {
-  if (!isAllowed) {
-    return <Navigate to={redirectPath} replace />;
-  }
+export const ProtectedRoute = ({ children }) => {
+  const isAuthenticated = localStorage.getItem("auth_token");
+  if (!isAuthenticated) return <Navigate to="/login" replace />;
 
   return children ? children : <Outlet />;
 };

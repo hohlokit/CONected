@@ -6,4 +6,8 @@
   body {
     @apply flex min-h-screen w-screen bg-body bg-no-repeat bg-cover;
   }
+
+  #root {
+    @apply w-full;
+  }
 }

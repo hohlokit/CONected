@@ -1,8 +1,14 @@
 import React from "react";
+import cn from "classnames";
 
-const Card = ({ children }) => {
+const Card = ({ className, children }) => {
   return (
-    <div className="flex justify-center items-center rounded p-8 bg-steam-component-card">
+    <div
+      className={cn(
+        "flex rounded p-8 bg-steam-component-card",
+        className
+      )}
+    >
       {children}
     </div>
   );

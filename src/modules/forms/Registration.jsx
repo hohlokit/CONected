@@ -51,6 +51,7 @@ const RegistrationForm = () => {
   });
 
   const onSubmit = (data) => {
+    //TODO registration request
     console.log(data);
   };
 

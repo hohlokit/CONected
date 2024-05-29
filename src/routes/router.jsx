@@ -1,6 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 
-import { Login, ResetPassword, Registration } from "../pages";
+import { ProtectedRoute } from "./ProtectedRoute";
+import { Login, ResetPassword, Registration, Vacancies } from "../pages";
+import { MainLayout } from "../modules";
 
 const routes = [
   {
@@ -17,12 +19,24 @@ const routes = [
   },
 ];
 
+const protectedRoutes = [
+  {
+    element: <Vacancies />,
+    path: "vacancies",
+  },
+];
+
 const AppRoutes = () => {
   return (
     <Routes>
       {routes.map(({ element, path }) => (
         <Route key={path} path={path} element={element} />
       ))}
+      <Route element={<ProtectedRoute />}>
+        {protectedRoutes.map(({ element, path }) => (
+          <Route key={path} path={path} element={<MainLayout>{element}</MainLayout>} />
+        ))}
+      </Route>
     </Routes>
   );
 };

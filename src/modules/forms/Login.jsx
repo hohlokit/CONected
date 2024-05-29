@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-import { Input, Card, Button, Link } from "../../components";
+import { Input, Button, Link } from "../../components";
 import AuthLayout from "../AuthLayout";
 
 const fields = [
@@ -28,15 +30,12 @@ const fields = [
     type: "password",
     options: {
       required: true,
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: "Перевірте ваш Email",
-      },
     },
   },
 ];
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -50,8 +49,25 @@ const LoginForm = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async ({ email, password }) => {
+    //TODO login request
+
+    localStorage.setItem("auth_token", "token");
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        id: 1,
+        firstname: "bibka",
+        surname: "bobka",
+        phone: "0981231234",
+        email: "bibka@gmail.com",
+        type: "student",
+        address: "Kiyv",
+        avatar:
+          "https://p.djinni.co/66/f2eb368bd125679a422f0d48e647dc/1611751583307_400.jfif",
+      })
+    );
+    navigate("/vacancies");
   };
 
   return (

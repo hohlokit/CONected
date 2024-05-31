@@ -1,5 +1,10 @@
+export { default as ProfileInfo } from "./ProfileInfo";
 export { default as MainLayout } from "./MainLayout";
 export { default as Header } from "./Header";
 export { default as LoginForm } from "./forms/Login";
+export { default as CreateVacancyForm } from "./forms/CreateVacancy";
 export { default as RegistrationForm } from "./forms/Registration";
 export { default as ResetPasswordForm } from "./forms/ResetPassword";
+export { default as EditProfileForm } from "./forms/EditProfile";
+export { default as ChangePasswordForm } from "./forms/ChangePassword";
+export { default as NewPasswordForm } from "./forms/NewPassword";

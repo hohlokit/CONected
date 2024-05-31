@@ -3,7 +3,7 @@ import cn from "classnames";
 
 import Error from "./Error";
 
-const Input = forwardRef(
+const TextArea = forwardRef(
   ({ name, defaultValue, type, className, label, error, ...props }, ref) => {
     return (
       <div className="flex flex-col">
@@ -12,7 +12,8 @@ const Input = forwardRef(
           htmlFor={name}
         >
           {label}
-          <input
+          <textarea
+            rows={6}
             name={name}
             ref={ref}
             className={cn(
@@ -30,4 +31,4 @@ const Input = forwardRef(
   }
 );
 
-export default Input;
+export default TextArea;

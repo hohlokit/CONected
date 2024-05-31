@@ -28,7 +28,7 @@ module.exports = {
       borderWidth: {},
       screens: {
         xs: "0px",
-        sm: "480px",
+        sm: "525px",
         md: "632px",
         lg: "912px",
         gl: "1168px",

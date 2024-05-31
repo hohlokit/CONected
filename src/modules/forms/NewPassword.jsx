@@ -1,31 +1,35 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 import { Input, Card, Button, Link } from "../../components";
 import { api } from "../../services/api";
-import { toast } from "react-toastify";
+import { PASSWORD, REQUIRED } from "../../services/validation";
 import { useNavigate } from "react-router-dom";
 
 const fields = [
   {
     component: Input,
-    name: "email",
-    label: "Email",
+    name: "resetCode",
+    label: "Код з Email",
     type: "text",
     options: {
-      required: {
-        value: true,
-        message: "Обов`язкове поле",
-      },
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: "Перевірте ваш Email",
-      },
+      required: REQUIRED,
+    },
+  },
+  {
+    component: Input,
+    name: "newPassword",
+    label: "Новий пароль",
+    type: "password",
+    options: {
+      required: REQUIRED,
+      ...PASSWORD,
     },
   },
 ];
 
-const ResetPasswordForm = () => {
+const NewPasswordForm = () => {
   const {
     handleSubmit,
     register,
@@ -34,19 +38,20 @@ const ResetPasswordForm = () => {
     mode: "onChange",
     reValidateMode: "onSubmit",
     defaultValues: {
-      email: "",
+      resetCode: "",
+      newPassword: "",
     },
   });
   const navigate = useNavigate();
   const onSubmit = async (data) => {
     try {
-      await api.post("/auth/send-reset-code", data);
+      const email = localStorage.getItem("reset_password_email");
+      await api.post("/auth/reset-password", { email, ...data });
 
-      localStorage.setItem("reset_password_email", data.email);
-      toast.success(
-        "Email з посиланням для відновлення паролю успішно відправлено"
-      );
-      navigate("/update-password");
+      toast.success("Пароль успішно змінено");
+
+      localStorage.removeItem("reset_password_email");
+      navigate("/login");
     } catch (error) {
       toast.error(error?.response?.data?.message || error?.message);
     }
@@ -77,4 +82,4 @@ const ResetPasswordForm = () => {
   );
 };
 
-export default ResetPasswordForm;
+export default NewPasswordForm;

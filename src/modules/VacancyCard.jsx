@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import cn from "classnames";
 
 import { Button, Card, Link } from "../components";
+import { useAxiosInterceptors } from "../hooks/useAxiosInterceptors";
+import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 const tagsById = {
   hot: {
@@ -20,23 +23,30 @@ const tagsById = {
 const VacancyCard = ({
   tags = [],
   logo,
-  vacancy,
-  name,
+  title,
+  company,
   description,
-  address,
+  location,
   phone,
-  time,
   email,
   isApplied,
   isApproved,
   isDeclined,
   isStudent,
+  id,
+  onClick,
 }) => {
+  useAxiosInterceptors();
   const [isApplicationSent, setIsApplicationSent] = useState(isApplied);
-  const handleClick = () => {
-    //TODO add request for applying
 
-    setIsApplicationSent(true);
+  const handleClick = async () => {
+    try {
+      await api.post(`/vacancies/${id}`);
+
+      setIsApplicationSent(true);
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message);
+    }
   };
 
   const result = () => {
@@ -85,7 +95,10 @@ const VacancyCard = ({
   };
 
   return (
-    <Card className="rounded-xl flex-col gap-4 justify-between sm:w-full">
+    <Card
+      className="rounded-xl flex-col gap-4 justify-between sm:w-full"
+      onClick={onClick}
+    >
       <div className="flex flex-col justify-start gap-4">
         <div className="flex flex-row w-full gap-2">
           {tags.map((tag) => {
@@ -104,15 +117,15 @@ const VacancyCard = ({
           })}
         </div>
         <div className="w-full flex flex-row gap-8 justify-between items-center ">
-          <span className="text-2xl text-white font-medium">{vacancy}</span>
+          <span className="text-2xl text-white font-medium">{title}</span>
           <img
             className="w-20 h-20 object-contain"
-            alt={`${name}-${vacancy}-logo`}
+            alt={`${company}-${title}-logo`}
             src={logo}
           />
         </div>
         <div className="flex text-white">
-          <b>{name}</b>, {address}
+          <b>{company}</b>, {location}
         </div>
         <p className="text-white text-justify">{description}</p>
       </div>

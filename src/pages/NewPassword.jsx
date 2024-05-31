@@ -1,14 +1,12 @@
 import React, { useEffect } from "react";
-import { LoginForm } from "../modules";
+import { NewPasswordForm } from "../modules";
 
-const Login = () => {
-  useEffect(() => {}, []);
-
+const NewPassword = () => {
   return (
     <div className="flex items-center justify-center w-full h-screen">
-      <LoginForm />
+      <NewPasswordForm />
     </div>
   );
 };
 
-export default Login;
+export default NewPassword;

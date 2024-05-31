@@ -1,4 +1,5 @@
 import { Navigate, Outlet } from "react-router-dom";
+import { useAxiosInterceptors } from "../hooks/useAxiosInterceptors";
 
 export const ProtectedRoute = ({ children }) => {
   const isAuthenticated = localStorage.getItem("auth_token");

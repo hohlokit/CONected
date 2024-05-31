@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import { Card, Link } from "../components";
 
-const AuthLayout = ({ children }) => {
+const AuthLayout = ({ children, horizontal }) => {
   const { pathname } = useLocation();
   const currentRoute = pathname.replace("/", "");
 

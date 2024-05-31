@@ -1,10 +1,12 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import { Input, Button, Link } from "../../components";
 import AuthLayout from "../AuthLayout";
+import { api } from "../../services/api";
+import { EMAIL, PASSWORD, REQUIRED } from "../../services/validation";
+import { toast } from "react-toastify";
 
 const fields = [
   {
@@ -13,14 +15,8 @@ const fields = [
     label: "Email",
     type: "text",
     options: {
-      required: {
-        value: true,
-        message: "Обов`язкове поле",
-      },
-      pattern: {
-        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-        message: "Перевірте ваш Email",
-      },
+      required: REQUIRED,
+      pattern: EMAIL,
     },
   },
   {
@@ -29,7 +25,8 @@ const fields = [
     label: "Пароль",
     type: "password",
     options: {
-      required: true,
+      required: REQUIRED,
+      ...PASSWORD,
     },
   },
 ];
@@ -50,24 +47,15 @@ const LoginForm = () => {
   });
 
   const onSubmit = async ({ email, password }) => {
-    //TODO login request
+    try {
+      const res = await api.post("/auth/login", { email, password });
 
-    localStorage.setItem("auth_token", "token");
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        id: 1,
-        firstname: "bibka",
-        surname: "bobka",
-        phone: "0981231234",
-        email: "bibka@gmail.com",
-        type: "student",
-        address: "Kiyv",
-        avatar:
-          "https://p.djinni.co/66/f2eb368bd125679a422f0d48e647dc/1611751583307_400.jfif",
-      })
-    );
-    navigate("/vacancies");
+      localStorage.setItem("auth_token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.user));
+      navigate("/vacancies");
+    } catch (error) {
+      toast.error(error?.response?.data?.message || error?.message);
+    }
   };
 
   return (

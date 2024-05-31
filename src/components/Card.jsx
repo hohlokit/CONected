@@ -1,13 +1,11 @@
 import React from "react";
 import cn from "classnames";
 
-const Card = ({ className, children }) => {
+const Card = ({ className, onClick, children }) => {
   return (
     <div
-      className={cn(
-        "flex rounded p-8 bg-steam-component-card",
-        className
-      )}
+      onClick={onClick}
+      className={cn("flex rounded p-8 bg-steam-component-card", className)}
     >
       {children}
     </div>

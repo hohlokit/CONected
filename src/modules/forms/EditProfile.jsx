@@ -8,6 +8,7 @@ import {
   PhoneInput,
   FileUpload,
   Card,
+  TextArea,
 } from "../../components";
 import { REQUIRED, EMAIL, PASSWORD } from "../../services/validation";
 import { api } from "../../services/api";
@@ -15,11 +16,6 @@ import { toast } from "react-toastify";
 import { useAxiosInterceptors } from "../../hooks/useAxiosInterceptors";
 
 const group1 = [
-  {
-    component: FileUpload,
-    name: "avatar",
-    label: "Аватар",
-  },
   {
     condition: (type) => type === "company",
     component: Input,
@@ -100,6 +96,7 @@ const EditProfileForm = () => {
         "location",
         "email",
         "phone",
+        "bio",
       ];
       return fields.reduce((acc, curr) => {
         if (user[curr]) acc[curr] = user[curr];
@@ -144,8 +141,11 @@ const EditProfileForm = () => {
         className="w-full flex flex-col gap-4"
         onSubmit={handleSubmit(onSubmit)}
       >
+        <div className="flex flex-row xl:px-4 w-full">
+          <FileUpload name="avatar" label="Аватар" {...register("avatar")} />
+        </div>
         <div className="w-full flex flex-col items-center sm:items-start justify-between xl:justify-around md:flex-row  gap-4">
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-start gap-4">
             {group1.map(
               ({ options, name, condition, component: Component, ...props }) =>
                 !condition || condition(user.type) ? (
@@ -171,6 +171,14 @@ const EditProfileForm = () => {
             ))}
           </div>
         </div>
+        <div className="flex flex-row xl:px-4 w-full">
+          <TextArea
+            label="Про себе"
+            wrapperClassName="w-full"
+            error={errors["bio"]?.message}
+            {...register("bio", { required: REQUIRED })}
+          />
+        </div>
 
         <div className="flex flex-row items-center justify-center">
           <Button type="submit">Зберегти</Button>
@@ -181,3 +189,10 @@ const EditProfileForm = () => {
 };
 
 export default EditProfileForm;
+
+// {
+//   component: FileUpload,
+//   name: "avatar",
+//   label: "Аватар",
+//   wrapperClassName: "pb-4",
+// },

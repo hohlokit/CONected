@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
+import { toast } from "react-toastify";
 
 import VacancyCard from "../modules/VacancyCard";
 import { Button, Loader } from "../components";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useAxiosInterceptors } from "../hooks/useAxiosInterceptors";
+import { useDebouncedCallback } from "use-debounce";
 
 // filter = all | applied | approved | declined | active | inactive
 
@@ -56,10 +58,11 @@ const Vacancies = () => {
   };
 
   useEffect(() => {
-    getVacancies().then((res) => setVacancies(res));
+    getVacancies().then((res) => setVacancies(res || []));
   }, [filter, search]);
 
-  const handleChangeFilter = (val) => () => setFilter(val);
+  const handleChangeFilter = (val) =>
+    useDebouncedCallback(() => setFilter(val));
   const handleCreateVacancy = () => navigate("/create-vacancy");
 
   const goToVacancy = (id) => () => {

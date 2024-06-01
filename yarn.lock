@@ -2467,11 +2467,6 @@ react-number-format@^5.3.4:
   dependencies:
     prop-types "^15.7.2"
 
-react-placeholder-image@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/react-placeholder-image/-/react-placeholder-image-0.1.8.tgz#5ebcd54a1d26545e1eb7bd6175a3b475e5ad15dd"
-  integrity sha512-UsTaqWRmfKxnwJutSLB8gwqwIlnsBCEi553kRz4AqFCC9VK9vhb5riDpA0OZZflHBVdn+nrz/330uA+ZUDemlg==
-
 react-refresh@^0.14.0:
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.14.2.tgz#3833da01ce32da470f1f936b9d477da5c7028bf9"
@@ -3076,6 +3071,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+use-debounce@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/use-debounce/-/use-debounce-10.0.1.tgz#adc42e7f7b08a237f5bbf0ea6cadee5813863cdc"
+  integrity sha512-0uUXjOfm44e6z4LZ/woZvkM8FwV1wiuoB6xnrrOmeAEjRDDzTLQNRFtYHvqUsJdrz1X37j0rVGIVp144GLHGKg==
 
 util-deprecate@^1.0.2:
   version "1.0.2"

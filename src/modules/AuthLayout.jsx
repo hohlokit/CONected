@@ -33,7 +33,7 @@ const AuthLayout = ({ children, horizontal }) => {
         <div className="border-r pr-8 border-steam-component-input">
           {children}
         </div>
-        <div className="pl-8 flex flex-col items-center justify-center text-center">
+        <div className="pl-8 flex sm:flex-col items-center justify-center text-center">
           {variants[currentRoute]}
         </div>
       </div>

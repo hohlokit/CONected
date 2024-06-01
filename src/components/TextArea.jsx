@@ -4,9 +4,21 @@ import cn from "classnames";
 import Error from "./Error";
 
 const TextArea = forwardRef(
-  ({ name, defaultValue, type, className, label, error, ...props }, ref) => {
+  (
+    {
+      name,
+      defaultValue,
+      type,
+      className,
+      wrapperClassName,
+      label,
+      error,
+      ...props
+    },
+    ref
+  ) => {
     return (
-      <div className="flex flex-col">
+      <div className={cn("flex flex-col", wrapperClassName)}>
         <label
           className={cn("flex flex-col text-steam-text-secondary ")}
           htmlFor={name}

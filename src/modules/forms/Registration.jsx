@@ -7,6 +7,7 @@ import {
   RadioGroup,
   PhoneInput,
   FileUpload,
+  TextArea,
 } from "../../components";
 import AuthLayout from "../AuthLayout";
 import { REQUIRED, EMAIL, PHONE, PASSWORD } from "../../services/validation";
@@ -117,6 +118,7 @@ const RegistrationForm = () => {
       email: "",
       phone: "",
       password: "",
+      bio: "",
     },
   });
   const navigate = useNavigate();
@@ -161,6 +163,12 @@ const RegistrationForm = () => {
                 />
               ) : null
           )}
+          <TextArea
+            label="Про себе"
+            wrapperClassName="w-full"
+            error={errors["bio"]?.message}
+            {...register("bio", { required: REQUIRED })}
+          />
           <div className="flex flex-row items-center justify-between pt-4">
             <Button type="submit">Зареєструватися</Button>
           </div>

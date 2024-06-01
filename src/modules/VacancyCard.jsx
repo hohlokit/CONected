@@ -35,9 +35,11 @@ const VacancyCard = ({
   isStudent,
   id,
   onClick,
+  cardClassName,
 }) => {
   useAxiosInterceptors();
   const [isApplicationSent, setIsApplicationSent] = useState(isApplied);
+  const [logoSrc, setLogoSrc] = useState(logo || "");
 
   const handleClick = async () => {
     try {
@@ -94,9 +96,18 @@ const VacancyCard = ({
     }
   };
 
+  const onError = () => {
+    setLogoSrc(
+      "https://res.cloudinary.com/dxdrvm3gs/image/upload/v1717090361/myqc8dkk0xttrwwkvkod.png"
+    );
+  };
+
   return (
     <Card
-      className="rounded-xl flex-col gap-4 justify-between sm:w-full"
+      className={cn(
+        "rounded-xl flex-col gap-4 justify-between sm:w-full",
+        cardClassName
+      )}
       onClick={onClick}
     >
       <div className="flex flex-col justify-start gap-4">
@@ -119,9 +130,10 @@ const VacancyCard = ({
         <div className="w-full flex flex-row gap-8 justify-between items-center ">
           <span className="text-2xl text-white font-medium">{title}</span>
           <img
+            onError={onError}
             className="w-20 h-20 object-contain"
             alt={`${company}-${title}-logo`}
-            src={logo}
+            src={logoSrc}
           />
         </div>
         <div className="flex text-white">

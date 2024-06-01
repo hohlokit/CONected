@@ -27,7 +27,7 @@ module.exports = {
       spacing: {},
       borderWidth: {},
       screens: {
-        xs: "0px",
+        xs: "375px",
         sm: "525px",
         md: "632px",
         lg: "912px",

@@ -58,3 +58,19 @@
     transform: rotate(360deg);
   }
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 16px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}

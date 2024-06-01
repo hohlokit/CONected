@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { toast } from "react-toastify";
+import { useDebouncedCallback } from "use-debounce";
 
 import VacancyCard from "../modules/VacancyCard";
 import { Button, Loader } from "../components";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
 import { useAxiosInterceptors } from "../hooks/useAxiosInterceptors";
-import { useDebouncedCallback } from "use-debounce";
 
 // filter = all | applied | approved | declined | active | inactive
 
@@ -122,6 +122,7 @@ const Vacancies = () => {
 
           return (
             <VacancyCard
+              cardClassName={user.type === "company" ? "cursor-pointer" : ""}
               onClick={goToVacancy(vacancy.id)}
               key={vacancy.createdAt}
               isApproved={isApproved}
